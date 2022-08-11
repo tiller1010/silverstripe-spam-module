@@ -30,7 +30,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: tiller1010/silverstripe-spam-module
-          excludes: ""
+          excludes: prerelease
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
