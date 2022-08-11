@@ -25,4 +25,9 @@ class HoneypotProtector implements SpamProtector
     public function setFieldMapping($fieldMapping)
     {
     }
+
+    // Release notes .....
+    public function testFeatureForGitFlow()
+    {
+    }
 }
