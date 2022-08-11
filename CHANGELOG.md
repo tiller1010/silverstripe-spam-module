@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.2 - 2022-08-11
+## 🐛 Bugfixes
+- A bugfix
+
+## 🔨 Improvements
+- Added git flow like actions
+
+
+
 ## 1.1.0 - 2022-08-11
 
 
