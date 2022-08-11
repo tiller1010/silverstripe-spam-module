@@ -1,0 +1,20 @@
+name: Sync develop branch with main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  sync_develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: Merge main
+        run: git merge main
