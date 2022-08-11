@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Generate Changelog
         id: changelog
         uses: loopwerk/tag-changelog@v1.0.4
