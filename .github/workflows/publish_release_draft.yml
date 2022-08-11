@@ -27,7 +27,7 @@ jobs:
 
       - name: Get release id
         id: get_release_id
-        uses: agners/get-draft-release@main
+        uses: bruceadams/get-release@v1.2.3
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
