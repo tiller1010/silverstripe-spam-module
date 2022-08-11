@@ -17,4 +17,4 @@ jobs:
         with:
           ref: develop
       - name: Merge main
-        run: git merge main
+        run: git merge main -s recursive -X theirs
