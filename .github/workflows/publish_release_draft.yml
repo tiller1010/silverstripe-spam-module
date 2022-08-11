@@ -29,15 +29,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Get release id
-      #   id: get_release_id
-      #   uses: pozetroninc/github-action-get-latest-release@master
-      #   with:
-      #     repository: tiller1010/silverstripe-spam-module
-      #     excludes: prerelease
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
-
       - name: Publish release
         uses: eregon/publish-release@v1
         env:
