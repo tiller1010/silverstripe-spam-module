@@ -7,28 +7,26 @@ on:
     branches:
       - 'releases/**'
 
-
 jobs:
-  if_merged:
+  publish_release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    # outputs:
-    #   output: ${{ steps.get_release_id.outputs.release_id }}
+    outputs:
+      output: ${{ steps.get_release_id.outputs.release_id }}
     steps:
-      # - name: Get release id
-      #   id: get_release_id
-      #   run: |
-      #     RELEASEID=$(git describe --tags | sed -re "s/-.+//")
-      #     echo "::set-output name=release_id::$RELEASEID"
-
       - name: Get release id
         id: get_release_id
-        uses: pozetroninc/github-action-get-latest-release@master
+        run: |
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+          RELEASEID=$(curl -H "Accept: application/vnd.github+json" -H "Authorization: token $TOKEN" https://api.github.com/repos/tiller1010/silverstripe-spam-module/releases)
+          RELEASEID=$(echo "$RELEASEID" | grep \"id\"  | head -n 1 | sed -re "s/[a-z]*//g;s/[-|,|:|'\"]//g;s/\s//g")
+          echo "::set-output name=release_id::$RELEASEID"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: eregon/publish-release@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            release_id: ${{ steps.get_release_id.outputs.id }}
+      - name: Publish release
+        uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.get_release_id.outputs.release_id }}
