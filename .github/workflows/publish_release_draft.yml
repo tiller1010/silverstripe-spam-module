@@ -1,20 +1,15 @@
 name: Publish draft release when release branch is merged
 
-# on:
-#   pull_request:
-#     types:
-#       - closed
-#     branches:
-#       - 'releases/**'
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - main
-
+      - 'releases/**'
 
 jobs:
   publish_release:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.get_release_id.outputs.release_id }}
