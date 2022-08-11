@@ -27,7 +27,7 @@ jobs:
 
       - name: Get release id
         id: get_release_id
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: agners/get-draft-release@main
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
