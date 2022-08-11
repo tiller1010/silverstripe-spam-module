@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.4 - 2022-08-11
+## 🐛 Bugfixes
+- A bugfix
+- fix workflow
+
+## 🔨 Improvements
+- Added git flow like actions
+
+
+
 ## 1.1.3 - 2022-08-11
 
 
