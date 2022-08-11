@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - 'releases/**'
+      - releases/*
 
 jobs:
   publish_release:
