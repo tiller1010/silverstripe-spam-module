@@ -28,6 +28,8 @@ jobs:
       - name: Get release id
         id: get_release_id
         uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: tiller1010/silverstripe-spam-module
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
