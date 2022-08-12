@@ -30,7 +30,7 @@ jobs:
 
       - name: Draft Release With Release Branch
         id: update_release_draft_with_release_branch
-        if: $(git branch | grep "\* release")
+        if: git branch | grep "\* release"
         uses: tiller1010/release-drafter@master
         with:
           tag: $(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
@@ -39,7 +39,7 @@ jobs:
 
       - name: Draft Release
         id: update_release_draft
-        if: $(git branch | grep "\* release") == ''
+        if: git branch | grep "\* release" == ''
         uses: tiller1010/release-drafter@master
         with:
           last_tag: ${{ steps.last_tag.outputs.last_tag_on_branch }}
