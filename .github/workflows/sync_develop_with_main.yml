@@ -17,4 +17,6 @@ jobs:
         with:
           ref: develop
       - name: Merge main
-        run: git merge origin origin/main -s recursive -X theirs
+        run: |
+          git fetch
+          git merge main -s recursive -X theirs
