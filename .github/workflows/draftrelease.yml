@@ -26,14 +26,20 @@ jobs:
         id: last_tag
         run: |
           LASTTAG=$(git describe --tags | sed -re "s/-.+//")
-          if git branch | grep "\* release";
-          then
-            LASTTAG=$(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
-          fi
           echo "::set-output name=last_tag_on_branch::$LASTTAG"
+
+      - name: Draft Release With Release Branch
+        id: update_release_draft_with_release_branch
+        if: $(git branch | grep "\* release")
+        uses: tiller1010/release-drafter@master
+        with:
+          tag: $(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Draft Release
         id: update_release_draft
+        if: !$(git branch | grep "\* release")
         uses: tiller1010/release-drafter@master
         with:
           last_tag: ${{ steps.last_tag.outputs.last_tag_on_branch }}
