@@ -14,39 +14,11 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.is_release_branch.outputs.filtered_branch_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
         with:
           fetch-depth: 0
-
-      # NEW RELEASES
-      # Check if this is a release branch
-      - name: Check For release Branch
-        id: is_release_branch
-        run: |
-          FILTEREDBRANCHNAME=$(git branch | grep "\* release")
-          echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
-
-      # Get the release tag
-      - name: Get release Tag
-        id: get_release_tag
-        if: steps.is_release_branch.outputs.filtered_branch_name != ''
-        run: |
-          RELEASETAG=$(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
-          echo "::set-output name=release_tag::$RELEASETAG"
-
-      # Draft Release with release branch
-      - name: Draft Release with release branch
-        id: update_release_draft_with_release_branch
-        if: steps.is_release_branch.outputs.filtered_branch_name != ''
-        uses: tiller1010/release-drafter@master
-        with:
-          tag: ${{ steps.get_release_tag.outputs.release_tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
       # SUPPORT HOTFIXES
