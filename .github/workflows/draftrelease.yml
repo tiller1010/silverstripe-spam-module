@@ -39,7 +39,7 @@ jobs:
 
       - name: Draft Release
         id: update_release_draft
-        if: !$(git branch | grep "\* release")
+        if: ! $(git branch | grep "\* release")
         uses: tiller1010/release-drafter@master
         with:
           last_tag: ${{ steps.last_tag.outputs.last_tag_on_branch }}
