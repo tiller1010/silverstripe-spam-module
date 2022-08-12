@@ -22,7 +22,7 @@ jobs:
 
       # NEW RELEASES
       # Check if this is a release branch
-      - name: Check For release Branch
+      - name: Check For release branch
         id: is_release_branch
         continue-on-error: true
         run: |
@@ -50,7 +50,7 @@ jobs:
 
       # SUPPORT HOTFIXES
       # Check if this is a hotfix branch
-      - name: Check For hotfix Branch
+      - name: Check For hotfix branch
         id: is_hotfix_branch
         if: steps.is_release_branch.outputs.filtered_branch_name == ''
         continue-on-error: true
