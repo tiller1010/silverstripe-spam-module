@@ -21,6 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Check if this is a release branch
+      - name: Check For Release Branch
+        id: is_release_branch
+        run: |
+          FILTEREDBRANCHNAME=$(git branch | grep "\* release")
+          echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
+
       # Get the last tag created on this branch
       - name: Get Last Tag
         id: last_tag
@@ -30,7 +37,7 @@ jobs:
 
       - name: Draft Release With Release Branch
         id: update_release_draft_with_release_branch
-        if: git branch | grep "\* release"
+        if: steps.is_release_branch.outputs.filtered_branch_name != ''
         uses: tiller1010/release-drafter@master
         with:
           tag: $(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
@@ -39,7 +46,7 @@ jobs:
 
       - name: Draft Release
         id: update_release_draft
-        if: git branch | grep "\* release" == ''
+        if: steps.is_release_branch.outputs.filtered_branch_name == ''
         uses: tiller1010/release-drafter@master
         with:
           last_tag: ${{ steps.last_tag.outputs.last_tag_on_branch }}
