@@ -13,8 +13,6 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.update_release_draft.outputs.tag_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -28,6 +26,24 @@ jobs:
           FILTEREDBRANCHNAME=$(git branch | grep "\* release")
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
+      # Get the release tag
+      - name: Get Release Tag
+        id: get_release_tag
+        if: steps.is_release_branch.outputs.filtered_branch_name != ''
+        run: |
+          RELEASETAG=$(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
+          echo "::set-output name=release_tag::$RELEASETAG"
+
+      # Draft Release With Release Branch
+      - name: Draft Release With Release Branch
+        id: update_release_draft_with_release_branch
+        if: steps.is_release_branch.outputs.filtered_branch_name != ''
+        uses: tiller1010/release-drafter@master
+        with:
+          tag: ${{ steps.get_release_tag.outputs.release_tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Get the last tag created on this branch
       - name: Get Last Tag
         id: last_tag
@@ -35,16 +51,8 @@ jobs:
           LASTTAG=$(git describe --tags | sed -re "s/-.+//")
           echo "::set-output name=last_tag_on_branch::$LASTTAG"
 
-      - name: Draft Release With Release Branch
-        id: update_release_draft_with_release_branch
-        if: steps.is_release_branch.outputs.filtered_branch_name != ''
-        uses: tiller1010/release-drafter@master
-        with:
-          tag: $(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Draft Release
+      # Draft Release With Previous Tag
+      - name: Draft Release With Previous Tag
         id: update_release_draft
         if: steps.is_release_branch.outputs.filtered_branch_name == ''
         uses: tiller1010/release-drafter@master
