@@ -28,7 +28,7 @@ jobs:
           FILTEREDBRANCHNAME=$(git branch | grep "\* release")
           if [[ "$FILTEREDBRANCHNAME" == "" ]];
           then
-            FILTEREDBRANCHNAME="false"
+            FILTEREDBRANCHNAME="some string"
           fi
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
@@ -60,7 +60,7 @@ jobs:
           FILTEREDBRANCHNAME=$(git branch | grep "\* hotfix")
           if [[ "$FILTEREDBRANCHNAME" == "" ]];
           then
-            FILTEREDBRANCHNAME="false"
+            FILTEREDBRANCHNAME="some string"
           fi
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
