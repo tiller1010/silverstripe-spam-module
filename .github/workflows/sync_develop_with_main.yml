@@ -16,11 +16,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: develop
+
+      - name: Pass credentials
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Merge main
         run: |
           git fetch
           git checkout main
           git checkout develop
           git merge main -s recursive -X theirs --allow-unrelated-histories
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
