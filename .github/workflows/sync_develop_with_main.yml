@@ -12,13 +12,9 @@ jobs:
   sync_develop:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Checkout develop
         uses: actions/checkout@v2
         with:
           ref: develop
       - name: Merge main
-        run: git merge origin/main -s recursive -X theirs
+        run: git merge origin origin/main -s recursive -X theirs
