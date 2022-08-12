@@ -25,7 +25,11 @@ jobs:
       - name: Check For release Branch
         id: is_release_branch
         run: |
+          FILTEREDBRANCHNAME=$(git branch | grep "\* release")
           FILTEREDBRANCHNAME="false"
+          if [[ "$FILTEREDBRANCHNAME" == "" ]];
+          then
+          fi
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
       # Get the release tag
@@ -53,7 +57,11 @@ jobs:
         id: is_hotfix_branch
         if: steps.is_release_branch.outputs.filtered_branch_name == 'false'
         run: |
+          FILTEREDBRANCHNAME=$(git branch | grep "\* hotfix")
           FILTEREDBRANCHNAME="false"
+          if [[ "$FILTEREDBRANCHNAME" == "" ]];
+          then
+          fi
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
       # Get the hotfix tag
