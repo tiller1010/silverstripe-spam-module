@@ -26,11 +26,10 @@ jobs:
         id: is_release_branch
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* release")
-          if [[ "$FILTEREDBRANCHNAME" == "" ]];
+          if [[ "$FILTEREDBRANCHNAME" != "" ]];
           then
-            FILTEREDBRANCHNAME="some string"
+            echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
           fi
-          echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
       # Get the release tag
       - name: Get release Tag
