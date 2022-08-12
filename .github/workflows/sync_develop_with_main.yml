@@ -12,22 +12,10 @@ jobs:
   sync_develop:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout develop
-        uses: actions/checkout@v2
+      - name: Merge main -> develop
+        uses: devmasx/merge-branch@master
         with:
-          ref: develop
-
-      - name: Pass credentials
-        uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge main
-        run: |
-          git fetch
-          git checkout main
-          git checkout develop
-          git merge main --allow-unrelated-histories
-          git push
+          type: now
+          from_branch: main
+          target_branch: develop
+          github_token: ${{ secrets.GITHUB_TOKEN }}
