@@ -33,6 +33,7 @@ jobs:
       - name: Payload info
         id: payload_info
         uses: Dovyski/payload-info-action@master
+        continue-on-error: true
 
       # Generate changelog, changelog.yml is not triggered by other actions
       - name: Checkout
