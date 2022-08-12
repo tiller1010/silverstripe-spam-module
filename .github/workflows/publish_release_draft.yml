@@ -6,13 +6,12 @@ on:
       - closed
     branches:
       - main
+      - support/*
 
 jobs:
   publish_release:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.get_release_id.outputs.release_id }}
     steps:
       - name: Get release id
         id: get_release_id
@@ -35,7 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: ${{ payload.pull_request.base }}
 
       - name: Generate Changelog
         id: changelog
@@ -53,4 +52,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Updated CHANGELOG.md
-          branch: main
+          branch: ${{ payload.pull_request.base }}
