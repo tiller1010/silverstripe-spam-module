@@ -19,4 +19,6 @@ jobs:
       - name: Merge main
         run: |
           git fetch
+          git checkout main
+          git checkout develop
           git merge main -s recursive -X theirs
