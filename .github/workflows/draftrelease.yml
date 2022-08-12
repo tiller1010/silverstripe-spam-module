@@ -26,7 +26,7 @@ jobs:
         id: is_release_branch
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* release")
-          if "$FILTEREDBRANCHNAME" == "";
+          if [[ "$FILTEREDBRANCHNAME" == "" ]];
           then
             FILTEREDBRANCHNAME="false"
           fi
@@ -58,7 +58,7 @@ jobs:
         if: steps.is_release_branch.outputs.filtered_branch_name == 'false'
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* hotfix")
-          if "$FILTEREDBRANCHNAME" == "";
+          if [[ "$FILTEREDBRANCHNAME" == "" ]];
           then
             FILTEREDBRANCHNAME="false"
           fi
