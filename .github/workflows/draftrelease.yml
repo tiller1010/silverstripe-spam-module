@@ -26,6 +26,10 @@ jobs:
         id: last_tag
         run: |
           LASTTAG=$(git describe --tags | sed -re "s/-.+//")
+          if git branch | grep "\* release";
+          then
+            LASTTAG=$(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
+          fi
           echo "::set-output name=last_tag_on_branch::$LASTTAG"
 
       - name: Draft Release
