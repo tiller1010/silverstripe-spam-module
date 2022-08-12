@@ -55,7 +55,7 @@ jobs:
       # Check if this is a hotfix branch
       - name: Check For hotfix Branch
         id: is_hotfix_branch
-        if: steps.is_release_branch.outputs.filtered_branch_name == ""
+        if: steps.is_release_branch.outputs.filtered_branch_name == 'false'
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* hotfix")
           if "$FILTEREDBRANCHNAME" == "";
