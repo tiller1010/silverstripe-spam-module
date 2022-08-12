@@ -26,13 +26,13 @@ jobs:
         id: is_release_branch
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* release")
-          FILTEREDBRANCHNAME="${FILTEREDBRANCHNAME}false"
+          FILTEREDBRANCHNAME="${FILTEREDBRANCHNAME}falsestring"
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
       # Get the release tag
       - name: Get release Tag
         id: get_release_tag
-        if: steps.is_release_branch.outputs.filtered_branch_name != 'false'
+        if: steps.is_release_branch.outputs.filtered_branch_name != 'falsestring'
         run: |
           RELEASETAG=$(git branch | grep \* | sed -re "s/release\///;s/\*//;s/\s*//g")
           echo "::set-output name=release_tag::$RELEASETAG"
@@ -40,7 +40,7 @@ jobs:
       # Draft Release with release branch
       - name: Draft Release with release branch
         id: update_release_draft_with_release_branch
-        if: steps.is_release_branch.outputs.filtered_branch_name != 'false'
+        if: steps.is_release_branch.outputs.filtered_branch_name != 'falsestring'
         uses: tiller1010/release-drafter@master
         with:
           tag: ${{ steps.get_release_tag.outputs.release_tag }}
@@ -55,13 +55,13 @@ jobs:
         if: steps.is_release_branch.outputs.filtered_branch_name == ''
         run: |
           FILTEREDBRANCHNAME=$(git branch | grep "\* hotfix")
-          FILTEREDBRANCHNAME="${FILTEREDBRANCHNAME}false"
+          FILTEREDBRANCHNAME="${FILTEREDBRANCHNAME}falsestring"
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
       # Get the hotfix tag
       - name: Get hotfix Tag
         id: get_hotfix_tag
-        if: steps.is_hotfix_branch.outputs.filtered_branch_name != 'false'
+        if: steps.is_hotfix_branch.outputs.filtered_branch_name != 'falsestring'
         run: |
           RELEASETAG=$(git branch | grep \* | sed -re "s/hotfix\///;s/\*//;s/\s*//g")
           echo "::set-output name=release_tag::$RELEASETAG"
@@ -69,7 +69,7 @@ jobs:
       # Draft Release with hotfix branch
       - name: Draft Release with hotfix branch
         id: update_release_draft_with_hotfix_branch
-        if: steps.is_hotfix_branch.outputs.filtered_branch_name != 'false'
+        if: steps.is_hotfix_branch.outputs.filtered_branch_name != 'falsestring'
         uses: tiller1010/release-drafter@master
         with:
           tag: ${{ steps.get_hotfix_tag.outputs.release_tag }}
