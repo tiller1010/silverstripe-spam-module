@@ -25,7 +25,7 @@ jobs:
       - name: Check For release Branch
         id: is_release_branch
         run: |
-          git branch | grep "\* release"
+          git branch | grep "\*"
           FILTEREDBRANCHNAME=''
           echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
 
