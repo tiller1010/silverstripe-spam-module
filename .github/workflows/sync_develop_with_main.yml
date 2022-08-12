@@ -22,3 +22,5 @@ jobs:
           git checkout main
           git checkout develop
           git merge main -s recursive -X theirs --allow-unrelated-histories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
