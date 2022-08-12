@@ -21,4 +21,4 @@ jobs:
           git fetch
           git checkout main
           git checkout develop
-          git merge main -s recursive -X theirs
+          git merge main -s recursive -X theirs --allow-unrelated-histories
