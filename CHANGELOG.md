@@ -6,6 +6,12 @@
 
 
 
+## 1.1.15 - 2022-08-12
+## 🐛 Bugfixes
+- support branches
+
+
+
 ## 1.1.14 - 2022-08-12
 ## 🔨 Improvements
 - Removed old comments ([#17](https://github.com/tiller1010/silverstripe-spam-module/pull/17) by [tiller1010](https://github.com/tiller1010))
