@@ -30,11 +30,14 @@ jobs:
         with:
           release_id: ${{ steps.get_release_id.outputs.release_id }}
 
+      - name: Payload info
+        uses: Dovyski/payload-info-action@master
+
       # Generate changelog, changelog.yml is not triggered by other actions
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ payload.pull_request.base }}
+          ref: ${{ steps.infos.outputs.branch }}
 
       - name: Generate Changelog
         id: changelog
@@ -52,4 +55,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Updated CHANGELOG.md
-          branch: ${{ payload.pull_request.base }}
+          branch: ${{ steps.infos.outputs.branch }}
