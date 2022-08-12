@@ -15,14 +15,11 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     outputs:
-      filtered_branch_name: ${{ steps.is_release_branch.outputs.filtered_branch_name }}
-      release_tag: ${{ steps.get_release_tag.outputs.release_tag }}
-      filtered_branch_name: ${{ steps.is_hotfix_branch.outputs.filtered_branch_name }}
-      release_tag: ${{ steps.get_hotfix_tag.outputs.release_tag }}
-      filtered_branch_name: ${{ steps.Last.outputs.filtered_branch_name }}
-
-
-
+      is_release_branch_filtered_branch_name: ${{ steps.is_release_branch.outputs.filtered_branch_name }}
+      get_release_tag_release_tag: ${{ steps.get_release_tag.outputs.release_tag }}
+      is_hotfix_branch_filtered_branch_name: ${{ steps.is_hotfix_branch.outputs.filtered_branch_name }}
+      get_hotfix_tag_release_tag: ${{ steps.get_hotfix_tag.outputs.release_tag }}
+      last_tag_filtered_branch_name: ${{ steps.last_tag.outputs.filtered_branch_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
