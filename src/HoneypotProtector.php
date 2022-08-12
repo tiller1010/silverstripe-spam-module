@@ -34,6 +34,6 @@ class HoneypotProtector implements SpamProtector
       // bugfix release notes
 
       // Feature for 1.1.8
-      // 1.1.8 notes
+      // 1.1.8 notes edited
     }
 }
