@@ -6,13 +6,12 @@ on:
       - closed
     branches:
       - main
+      - support/*
 
 jobs:
   publish_release:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.get_release_id.outputs.release_id }}
     steps:
       - name: Get release id
         id: get_release_id
@@ -31,11 +30,15 @@ jobs:
         with:
           release_id: ${{ steps.get_release_id.outputs.release_id }}
 
+      - name: Payload info
+        id: payload_info
+        uses: Dovyski/payload-info-action@master
+
       # Generate changelog, changelog.yml is not triggered by other actions
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: ${{ steps.payload_info.outputs.branch }}
 
       - name: Generate Changelog
         id: changelog
@@ -53,4 +56,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Updated CHANGELOG.md
-          branch: main
+          branch: ${{ steps.payload_info.outputs.branch }}
