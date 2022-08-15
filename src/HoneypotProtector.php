@@ -34,5 +34,6 @@ class HoneypotProtector implements SpamProtector
 
     public function testFeatureForGitFlowAgain()
     {
+      // 1.2.0 release notes
     }
 }
