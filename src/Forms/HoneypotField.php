@@ -22,6 +22,7 @@ class HoneypotField extends TextField
   /**/
     public function validate($validator)
     {
+      // Some 1.1.17 patch
       //
         $form = $this->getForm();
         $attributes = $form->FormAttributes();
