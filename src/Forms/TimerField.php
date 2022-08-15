@@ -50,6 +50,7 @@ class TimerField extends TextField
           }
           return false;
         }
+        // A hotfix for 1.2.1
       //
         return true;
     }
