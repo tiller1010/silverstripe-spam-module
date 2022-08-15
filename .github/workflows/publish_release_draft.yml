@@ -41,8 +41,17 @@ jobs:
         with:
           ref: ${{ steps.payload_info.outputs.pull_request.base.ref }}
 
+      # Check if this is a support branch
+      - name: Check For support branch
+        id: is_support_branch
+        continue-on-error: true
+        run: |
+          FILTEREDBRANCHNAME=$(git branch | grep "\* support")
+          echo "::set-output name=filtered_branch_name::$FILTEREDBRANCHNAME"
+
       - name: Generate Changelog
         id: changelog
+        if: steps.is_support_branch.outputs.filtered_branch_name == ''
         uses: loopwerk/tag-changelog@v1.0.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,9 +60,11 @@ jobs:
 
       - name: Output Changelog
         id: output_changelog
+        if: steps.is_support_branch.outputs.filtered_branch_name == ''
         run: TAGCONTENT="${{ steps.changelog.outputs.changelog }}";CHANGELOG=$(cat CHANGELOG.md);CHANGELOG=$(echo "$CHANGELOG" | sed -e "s/# Changelog//");echo -e "# Changelog\n\n$TAGCONTENT$CHANGELOG" > CHANGELOG.md
 
       - name: Commit Updated Changelog
+        if: steps.is_support_branch.outputs.filtered_branch_name == ''
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Updated CHANGELOG.md
