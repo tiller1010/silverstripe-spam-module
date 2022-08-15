@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 - 2022-08-15
+## 🐛 Bugfixes
+- fixed bug ([#27](https://github.com/tiller1010/silverstripe-spam-module/pull/27) by [tiller1010](https://github.com/tiller1010))
+- 1.2.1 hotfix
+
+
+
 ## 1.2.0 - 2022-08-15
 ## 🎉 New Features
 - 1.2 feature ([#24](https://github.com/tiller1010/silverstripe-spam-module/pull/24) by [tiller1010](https://github.com/tiller1010))
