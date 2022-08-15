@@ -12,6 +12,7 @@ use SilverStripe\Core\Injector\Injector;
 
 class EditableTimerField extends EditableFormField
 {
+  // Bug fix for 1.1.19
   /**/
     private static $singular_name = 'Timer Spam Protection Field';
     private static $plural_name = 'Timer Spam Protection Fields';
