@@ -40,6 +40,7 @@ jobs:
           from_branch: ${{ steps.get_support_branch.outputs.support_branch }}
           target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: Merged ${{ steps.get_support_branch.outputs.support_branch }} into main
 
       - name: Merge main -> develop
         uses: devmasx/merge-branch@master
@@ -48,3 +49,4 @@ jobs:
           from_branch: main
           target_branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: Merged main into develop
