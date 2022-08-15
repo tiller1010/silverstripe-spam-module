@@ -58,6 +58,7 @@ class TimerField extends TextField
    */
     public function getAttributes()
     {
+      // bugfix for 1.1.16
       //
         $attributes = [
         'class' => 'wb-spam-hidden',
