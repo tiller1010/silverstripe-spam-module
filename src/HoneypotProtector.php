@@ -26,8 +26,14 @@ class HoneypotProtector implements SpamProtector
     {
     }
 
+    // Something done on the develop branch, outside of 1.1.14 release
     public function testFeatureForGitFlow()
     {
       // 1.1.14 notes
+    }
+
+    public function testFeatureForGitFlowAgain()
+    {
+      // 1.2.0 release notes
     }
 }
