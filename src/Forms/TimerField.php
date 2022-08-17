@@ -61,6 +61,7 @@ class TimerField extends TextField
     public function getAttributes()
     {
       // Squash test
+      // Squash test
       // bugfix for 1.1.16
       //
         $attributes = [
