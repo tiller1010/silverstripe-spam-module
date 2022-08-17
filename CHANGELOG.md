@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.9 - 2022-08-17
+## 🐛 Bugfixes
+- fixed something for 1.3.9
+
+
+
 ## 1.3.8 - 2022-08-17
 
 
