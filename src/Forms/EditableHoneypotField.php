@@ -83,4 +83,9 @@ class EditableHoneypotField extends EditableFormField
       parent::updateFormField($field);
     }
 
+    // 1.4.0 change
+    public function testFeatureForGitFlow()
+    {
+    }
+
 }
