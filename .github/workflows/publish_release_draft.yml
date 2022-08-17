@@ -70,6 +70,7 @@ jobs:
           commit_message: Updated CHANGELOG.md
           branch: ${{ steps.payload_info.outputs.pull_request.base.ref }}
 
+      # Remove the release or hotfix branch after publishing
       - name: Remove PR branch
         uses: dawidd6/action-delete-branch@v3
         with:
