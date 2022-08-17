@@ -70,10 +70,6 @@ jobs:
           commit_message: Updated CHANGELOG.md
           branch: ${{ steps.payload_info.outputs.pull_request.base.ref }}
 
-      # - name: Remove PR branch
-      #   run: |
-      #     git branch -D ${{ steps.payload_info.outputs.branch }}
-
       - name: Remove PR branch
         uses: dawidd6/action-delete-branch@v3
         with:
