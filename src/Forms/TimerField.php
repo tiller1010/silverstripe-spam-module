@@ -73,6 +73,7 @@ class TimerField extends TextField
         'style' => 'height: 1px; opacity: 0; margin: 0;'
         ];
       //
+      // Squash test
         return array_merge(
             parent::getAttributes(),
             $attributes
