@@ -75,6 +75,7 @@ class TimerField extends TextField
       //
       // Squash test
       // Squash test
+      // Squash test
         return array_merge(
             parent::getAttributes(),
             $attributes
