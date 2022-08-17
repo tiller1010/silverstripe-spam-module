@@ -72,4 +72,5 @@ jobs:
 
       - name: Remove PR branch
         run: |
-          git branch -D ${{ steps.payload_info.outputs.pull_request.head.ref }}
+          BRANCHNAME=${{ steps.payload_info.outputs.pull_request.head.ref }}
+          git branch -D $BRANCHNAME
