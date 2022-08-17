@@ -41,5 +41,6 @@ class HoneypotProtector implements SpamProtector
     {
       // Some 1.3.9 thought out patch release
       // 1.3.9 notes
+      // Squashed commit
     }
 }
