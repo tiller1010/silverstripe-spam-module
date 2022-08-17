@@ -45,5 +45,6 @@ class HoneypotProtector implements SpamProtector
       // Squashed commit
       // Squashed commit
       // Squashed commit
+      // 1.4.2
     }
 }
