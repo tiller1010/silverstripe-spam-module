@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.1 - 2022-08-17
+
+
+
+
 ## 1.4.0 - 2022-08-17
 ## 🎉 New Features
 - new 1.4.0 feature
