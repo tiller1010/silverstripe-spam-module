@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.2 - 2022-08-17
+
+
+
+
+## 1.3.1 - 2022-08-15
+## 🐛 Bugfixes
+- bugfix for 1.1.19
+- fixed 1.3 bug
+
+
+
 ## 1.1.15 - 2022-08-12
 ## 🐛 Bugfixes
 - support branches
